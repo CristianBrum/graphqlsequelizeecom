@@ -34,12 +34,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       createdAt: {
-        allowNull: false,
         type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
       },
       updatedAt: {
-        allowNull: false,
         type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
       },
     },
     {

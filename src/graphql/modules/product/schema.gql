@@ -1,0 +1,26 @@
+type Product {
+  id: Int!
+  productName: String!
+  firstPictureUrl: String!
+  variationDescription: String!
+  productWeight: Float!
+  unitPrice: Float!
+  stockQuantity: Int!
+}
+
+input ProductInput {
+  productName: String!
+  firstPictureUrl: String!
+  variationDescription: String!
+  productWeight: Float!
+  unitPrice: Float!
+  stockQuantity: Int!
+}
+
+type Query {
+  product(id: Int!): Product!
+  allProduct: [Product!]!
+}
+type Mutation {
+  createProduct(data: ProductInput!): Product!
+}
