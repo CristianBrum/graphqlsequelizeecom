@@ -1,4 +1,6 @@
+const { UserInputError } = require('apollo-server');
 const { products } = require('../../../models');
+const schema = require('./validation');
 
 const resolvers = {
   Query: {
@@ -11,8 +13,13 @@ const resolvers = {
   },
   Mutation: {
     async createProduct(_, { data }) {
-      const prod = await products.create(data);
-      return prod;
+      const { _value, error } = schema.validate(data, { abortEarly: false });
+      if (error) {
+        throw new UserInputError('Preencha todos os campos corretamente', {
+          validationErrors: error.details,
+        });
+      }
+      return products.create(data);
     },
   },
 };

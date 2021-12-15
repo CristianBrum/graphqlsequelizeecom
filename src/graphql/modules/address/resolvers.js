@@ -1,3 +1,4 @@
+const { UserInputError } = require('apollo-server');
 const schema = require('./validation');
 
 const { addresses } = require('../../../models');
@@ -17,7 +18,7 @@ const resolvers = {
     async createAddress(_, { data }) {
       const { _value, error } = schema.validate(data, { abortEarly: false });
       if (error) {
-        throw new Error('Preencha todos os campos corretamente', {
+        throw new UserInputError('Preencha todos os campos corretamente', {
           validationErrors: error.details,
         });
       }
