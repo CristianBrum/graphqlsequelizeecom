@@ -54,5 +54,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
 
+  Customer.associate = (models) => {
+    Customer.hasMany(models.addresses, {
+      foreignKey: 'userId',
+      as: 'addresses',
+    });
+  };
   return Customer;
 };

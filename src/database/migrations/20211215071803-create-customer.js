@@ -2,50 +2,38 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('addresses', {
+    await queryInterface.createTable('customers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      storeCustomerStreet: {
+      storeCustomerName: {
+        type: Sequelize.STRING,
+      },
+      storeCustomerLastName: {
+        type: Sequelize.STRING,
+      },
+      storeCustomerEmail: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
+      storeCustomerDocumentNumber: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique: true,
+      },
+      storeCustomerBirthDate: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      storeCustomerNeighborhood: {
-        allowNull: false,
+      username: {
         type: Sequelize.STRING,
+        unique: true,
       },
-      storeCustomerCity: {
-        allowNull: false,
+      password: {
         type: Sequelize.STRING,
-      },
-      storeCustomerState: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      storeCustomerCountry: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      storeCustomerPostalCode: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      storeCustomerNumber: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'customers',
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
@@ -58,6 +46,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('addresses');
+    await queryInterface.dropTable('customers');
   },
 };

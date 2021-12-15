@@ -45,13 +45,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: new Date(),
-        field: 'created_at',
       },
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: new Date(),
-        field: 'updated_at',
       },
     },
     {
@@ -60,8 +58,9 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Address.associate = (models) => {
-    Address.belongsTo(models.Customer, {
+    Address.belongsTo(models.customers, {
       foreignKey: 'userId',
+      as: 'customers',
     });
   };
 
