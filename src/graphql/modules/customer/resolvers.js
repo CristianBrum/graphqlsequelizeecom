@@ -72,6 +72,11 @@ const resolvers = {
       }
     },
   },
+  Customer: {
+    async address(cust) {
+      return cust.getAddresses();
+    },
+  },
 };
 
 module.exports = resolvers;

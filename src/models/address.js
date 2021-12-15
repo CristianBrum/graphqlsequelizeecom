@@ -1,41 +1,44 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Customer = sequelize.define(
-    'customers',
+  const Address = sequelize.define(
+    'addresses',
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      storeCustomerName: {
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      storeCustomerStreet: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      storeCustomerLastName: {
+      storeCustomerNeighborhood: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      storeCustomerEmail: {
+      storeCustomerCity: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      storeCustomerDocumentNumber: {
+      storeCustomerState: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      storeCustomerBirthDate: {
+      storeCustomerCountry: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      username: {
+      storeCustomerPostalCode: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
       },
-      password: {
-        type: DataTypes.STRING,
+      storeCustomerNumber: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       createdAt: {
@@ -50,15 +53,16 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'customers',
+      tableName: 'addresses',
     },
   );
 
-  Customer.associate = (models) => {
-    Customer.hasMany(models.addresses, {
+  Address.associate = (models) => {
+    Address.belongsTo(models.customers, {
       foreignKey: 'userId',
-      as: 'addresses',
+      as: 'customers',
     });
   };
-  return Customer;
+
+  return Address;
 };
