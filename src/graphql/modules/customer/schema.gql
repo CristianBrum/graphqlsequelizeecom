@@ -1,0 +1,34 @@
+type Customer {
+  id: Int!
+  storeCustomerName: String!
+  storeCustomerLastName: String!
+  storeCustomerEmail: String!
+  storeCustomerDocumentNumber: String!
+  storeCustomerBirthDate: String!
+  username: String!
+  password: String!
+}
+input CustomerInput {
+  storeCustomerName: String!
+  storeCustomerLastName: String!
+  storeCustomerEmail: String!
+  storeCustomerDocumentNumber: String!
+  storeCustomerBirthDate: String!
+  username: String!
+  password: String!
+}
+
+type AuthCustomer {
+  token: String!
+  customer: Customer!
+}
+
+type Query {
+  customer(id: Int!): Customer
+  allCustomer: [Customer!]!
+}
+type Mutation {
+  createCustomer(data: CustomerInput!): AuthCustomer!
+  updateCustomer(id: Int!, data: CustomerInput!): Customer!
+  login(username: String!, password: String!): AuthCustomer!
+}
