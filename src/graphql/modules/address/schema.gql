@@ -27,4 +27,6 @@ type Query {
 }
 type Mutation {
   createAddress(data: AddressInput!): Address!
+  updateAddress(id: Int!, data: AddressInput!): Address!
+  deleteAddress(id: Int!): Boolean!
 }

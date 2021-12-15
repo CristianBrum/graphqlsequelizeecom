@@ -23,6 +23,17 @@ const resolvers = {
       }
       return addresses.create(data);
     },
+    updateAddress: async (_, { id, data }, { auth }) => {
+      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+      const findId = await addresses.findByPk(id);
+      const updateAddress = await findId.update(data, { where: { id } });
+      return updateAddress;
+    },
+    deleteAddress: async (_, { id }, { auth }) => {
+      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+      const deleteAddress = await addresses.destroy({ where: { id } });
+      return deleteAddress;
+    },
   },
   Address: {
     async userId(address) {
