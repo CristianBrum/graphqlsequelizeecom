@@ -7,8 +7,7 @@ type Address {
   storeCustomerCountry: String!
   storeCustomerPostalCode: String!
   storeCustomerNumber: Int!
-  userId: Int!
-  customer: Customer!
+  userId: Customer!
 }
 
 input AddressInput {
