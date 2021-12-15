@@ -1,4 +1,6 @@
+const { UserInputError } = require('apollo-server');
 const { customers } = require('../../../models');
+const schema = require('./validation');
 const {
   encryptPassword,
   decryptPassword,
@@ -17,6 +19,13 @@ const resolvers = {
   },
   Mutation: {
     async createCustomer(_, { data }) {
+      const { _value, error } = schema.validate(data, { abortEarly: false });
+      if (error) {
+        throw new UserInputError('Preencha todos os campos corretamente', {
+          validationErrors: error.details,
+        });
+      }
+
       const customer = await customers.create({
         storeCustomerName: data.storeCustomerName,
         storeCustomerLastName: data.storeCustomerLastName,

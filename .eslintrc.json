@@ -13,6 +13,8 @@
       "strict": 0,
       "no-unused-vars":"off",
       "implicit-arrow-linebreak":"off",
-      "arrow-body-style":"off"
+      "arrow-body-style":"off",
+      "newline-per-chained-call":"off",
+      "no-useless-escape":"off"
     }
   }
