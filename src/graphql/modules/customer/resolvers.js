@@ -7,12 +7,11 @@ const {
 
 const resolvers = {
   Query: {
-    customer: async (_, { id }, { auth }) => {
+    customer: (_, { id }, { auth }) => {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
       return customers.findByPk(id);
     },
-    allCustomer: async ({ auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    allCustomer: () => {
       return customers.findAll();
     },
   },

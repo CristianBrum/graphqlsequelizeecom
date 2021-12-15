@@ -24,7 +24,7 @@ type AuthCustomer {
 }
 
 type Query {
-  customer(id: Int!): Customer
+  customer(id: Int!): Customer!
   allCustomer: [Customer!]!
 }
 type Mutation {
