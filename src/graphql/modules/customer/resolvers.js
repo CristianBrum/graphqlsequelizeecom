@@ -13,7 +13,7 @@ const resolvers = {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
       return customers.findByPk(id);
     },
-    allCustomer: ({ auth }) => {
+    allCustomer: (_, args, { auth }) => {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
       return customers.findAll();
     },

@@ -8,7 +8,7 @@ const resolvers = {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
       return products.findByPk(id);
     },
-    allProduct: ({ auth }) => {
+    allProduct: (_, args, { auth }) => {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
       return products.findAll();
     },

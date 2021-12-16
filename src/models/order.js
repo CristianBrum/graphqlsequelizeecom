@@ -1,5 +1,7 @@
 'use strict';
 
+const { ORDER_STATUS } = require('../utils/orderStatus');
+
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('orders', {
     id: {
@@ -17,8 +19,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
+      values: [
+        ORDER_STATUS.processed.ordinal,
+        ORDER_STATUS.delivered.ordinal,
+        ORDER_STATUS.shipped.ordinal,
+      ],
     },
     userId: {
       type: DataTypes.INTEGER,

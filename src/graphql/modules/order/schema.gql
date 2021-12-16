@@ -2,17 +2,15 @@ type Order {
   id: Int!
   installments: Int!
   quantity: Int!
-  status: String!
+  status: Int!
   userId: Int!
   addressId: Int!
-  customer: Customer!
-  allProduct: [Product!]!
 }
 
 input OrderInput {
   installments: Int!
   quantity: Int!
-  status: String!
+  status: Int!
   userId: Int!
   addressId: Int!
 }
