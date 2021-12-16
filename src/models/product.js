@@ -1,42 +1,36 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Customer = sequelize.define(
-    'customers',
+  const Product = sequelize.define(
+    'products',
     {
       id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
-      storeCustomerName: {
+      productName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      storeCustomerLastName: {
+      firstPictureUrl: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      storeCustomerEmail: {
-        type: DataTypes.STRING,
+      variationDescription: {
+        type: DataTypes.TEXT,
         allowNull: false,
       },
-      storeCustomerDocumentNumber: {
-        type: DataTypes.STRING,
+      productWeight: {
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
-      storeCustomerBirthDate: {
-        type: DataTypes.STRING,
+      unitPrice: {
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      password: {
-        type: DataTypes.STRING,
+      stockQuantity: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       createdAt: {
@@ -51,15 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'customers',
+      timestamps: false,
+      tableName: 'products',
     },
   );
 
-  Customer.associate = (models) => {
-    Customer.hasMany(models.addresses, {
-      foreignKey: 'userId',
-      as: 'addresses',
-    });
-  };
-  return Customer;
+  return Product;
 };
