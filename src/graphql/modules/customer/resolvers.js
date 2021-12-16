@@ -1,3 +1,4 @@
+const { UserInputError } = require('apollo-server');
 const { customers } = require('../../../models');
 const schema = require('./validation');
 const {
@@ -12,7 +13,8 @@ const resolvers = {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
       return customers.findByPk(id);
     },
-    allCustomer: () => {
+    allCustomer: ({ auth }) => {
+      if (!auth) throw new Error('Você não tem autorização para essa ação!');
       return customers.findAll();
     },
   },
@@ -20,7 +22,7 @@ const resolvers = {
     async createCustomer(_, { data }) {
       const { _value, error } = schema.validate(data, { abortEarly: false });
       if (error) {
-        throw new Error('Preencha todos os campos corretamente', {
+        throw new UserInputError('Preencha todos os campos corretamente', {
           validationErrors: error.details,
         });
       }

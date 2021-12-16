@@ -15,7 +15,8 @@ const resolvers = {
     },
   },
   Mutation: {
-    async createAddress(_, { data }) {
+    async createAddress(_, { data }, { auth }) {
+      if (!auth) throw new Error('Você não tem autorização para essa ação!');
       const { _value, error } = schema.validate(data, { abortEarly: false });
       if (error) {
         throw new UserInputError('Preencha todos os campos corretamente', {
