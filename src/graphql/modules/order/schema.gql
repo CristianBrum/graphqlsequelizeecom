@@ -5,6 +5,8 @@ type Order {
   status: Int!
   userId: Int!
   addressId: Int!
+  customer: Customer!
+  address: Address!
 }
 
 input OrderInput {
@@ -16,7 +18,7 @@ input OrderInput {
 }
 
 type Query {
-  order(id: Int!): Order
+  order(id: Int!): Order!
   allOrders: [Order!]!
 }
 

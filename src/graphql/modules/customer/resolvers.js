@@ -77,6 +77,9 @@ const resolvers = {
     async address(cust) {
       return cust.getAddresses();
     },
+    async order(customer) {
+      return customer.getOrders();
+    },
   },
 };
 

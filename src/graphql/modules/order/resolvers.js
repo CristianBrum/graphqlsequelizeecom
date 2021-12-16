@@ -6,12 +6,20 @@ const resolvers = {
       return orders.findByPk(id);
     },
     allOrders: () => {
-      orders.findAll();
+      return orders.findAll();
     },
   },
   Mutation: {
     async createOrder(_, { data }) {
       return orders.create(data);
+    },
+  },
+  Order: {
+    async customer(order) {
+      return order.getCustomers();
+    },
+    async address(order) {
+      return order.getAddresses();
     },
   },
 };

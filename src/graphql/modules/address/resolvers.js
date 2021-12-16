@@ -38,7 +38,7 @@ const resolvers = {
     },
   },
   Address: {
-    async userId(address) {
+    async customer(address) {
       return address.getCustomers();
     },
   },

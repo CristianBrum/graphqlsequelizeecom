@@ -8,7 +8,9 @@ type Customer {
   username: String!
   password: String!
   address: [Address!]!
+  order: [Order!]!
 }
+
 input CustomerInput {
   storeCustomerName: String!
   storeCustomerLastName: String!
