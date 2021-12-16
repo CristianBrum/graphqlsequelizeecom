@@ -1,21 +1,20 @@
 const { UserInputError } = require('apollo-server');
+const { orders } = require('../../../models');
 const schema = require('./validation');
-
-const { addresses } = require('../../../models');
 
 const resolvers = {
   Query: {
-    address: (_, { id }, { auth }) => {
+    order: (_, { id }, { auth }) => {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
-      return addresses.findByPk(id);
+      return orders.findByPk(id);
     },
-    allAddress: (_, args, { auth }) => {
+    allOrders: (_, args, { auth }) => {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
-      return addresses.findAll();
+      return orders.findAll();
     },
   },
   Mutation: {
-    async createAddress(_, { data }, { auth }) {
+    async createOrder(_, { data }, { auth }) {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
       const { _value, error } = schema.validate(data, { abortEarly: false });
       if (error) {
@@ -23,23 +22,30 @@ const resolvers = {
           validationErrors: error.details,
         });
       }
-      return addresses.create(data);
+      return orders.create(data);
     },
-    updateAddress: async (_, { id, data }, { auth }) => {
+    updateOrder: async (_, { id, data }, { auth }) => {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
-      const findId = await addresses.findByPk(id);
-      const updateAddress = await findId.update(data, { where: { id } });
-      return updateAddress;
+      const findId = await orders.findByPk(id);
+      const updateOrder = await findId.update(data, { where: { id } });
+      return updateOrder;
     },
-    deleteAddress: async (_, { id }, { auth }) => {
+    deleteOrder: async (_, { id }, { auth }) => {
       if (!auth) throw new Error('Você não tem autorização para essa ação!');
-      const deleteAddress = await addresses.destroy({ where: { id } });
-      return deleteAddress;
+      const deleteOrder = await orders.destroy({ where: { id } });
+      return deleteOrder;
     },
   },
-  Address: {
-    async customer(address) {
-      return address.getCustomers();
+  Order: {
+    async customer(order) {
+      return order.getCustomers();
+    },
+    async address(order) {
+      const test = await order.getAddresses();
+      return test;
+    },
+    async orderItem(order) {
+      return order.getOrdersItems();
     },
   },
 };

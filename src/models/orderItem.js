@@ -1,35 +1,24 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define(
-    'products',
+  const OrderItem = sequelize.define(
+    'ordersItems',
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        allowNull: false,
         autoIncrement: true,
       },
-      productName: {
-        type: DataTypes.STRING,
+      quantity: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      firstPictureUrl: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      productId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
       },
-      variationDescription: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      productWeight: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-      unitPrice: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-      stockQuantity: {
+      orderId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -45,9 +34,20 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'products',
+      tableName: 'ordersItems',
     },
   );
 
-  return Product;
+  OrderItem.associate = (models) => {
+    OrderItem.belongsTo(models.orders, {
+      foreignKey: 'orderId',
+      as: 'orders',
+    });
+    OrderItem.belongsTo(models.products, {
+      foreignKey: 'productId',
+      as: 'products',
+    });
+  };
+
+  return OrderItem;
 };

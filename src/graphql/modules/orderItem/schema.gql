@@ -1,0 +1,24 @@
+type OrderItem {
+  id: Int!
+  quantity: Int!
+  productId: Int!
+  orderId: Int!
+  products: Product!
+}
+
+input OrderItemInput {
+  quantity: Int!
+  productId: Int!
+  orderId: Int!
+}
+
+type Query {
+  orderItem(id: Int!): OrderItem!
+  allOrdersItems: [OrderItem!]!
+}
+
+type Mutation {
+  createOrderItem(data: OrderItemInput!): OrderItem!
+  updateOrderItem(id: Int!, data: OrderItemInput!): OrderItem!
+  deleteOrderItem(id: Int!): Boolean!
+}

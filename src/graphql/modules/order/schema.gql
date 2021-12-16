@@ -1,0 +1,28 @@
+type Order {
+  id: Int!
+  installments: Int!
+  status: Int!
+  userId: Int!
+  addressId: Int!
+  customer: Customer!
+  address: Address!
+  orderItem: [OrderItem!]!
+}
+
+input OrderInput {
+  installments: Int!
+  status: Int!
+  userId: Int!
+  addressId: Int!
+}
+
+type Query {
+  order(id: Int!): Order!
+  allOrders: [Order!]!
+}
+
+type Mutation {
+  createOrder(data: OrderInput!): Order!
+  updateOrder(id: Int!, data: OrderInput!): Order!
+  deleteOrder(id: Int!): Boolean!
+}
