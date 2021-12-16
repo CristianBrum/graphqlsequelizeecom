@@ -36,3 +36,5 @@ Esta é Uma Api de E-commerce. Ela foi escrito em Node js, utilizando GraphQL co
     * `npx sequelize db:create`
   * Para subir as tabelas no banco de dados:
     * `npx sequelize db:migrate`
+    * Para polular o banco de dados:(opcional)
+    * `npx sequelize-cli db:seed:all`
