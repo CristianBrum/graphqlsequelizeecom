@@ -1,9 +1,9 @@
 const Joi = require('@hapi/joi');
 
 const schema = Joi.object({
-  quantity: Joi.number().required(),
-  productId: Joi.number().required(),
-  orderId: Joi.number().required(),
+  quantity: Joi.number().positive().required(),
+  productId: Joi.number().positive().required(),
+  orderId: Joi.number().positive().required(),
 });
 
 module.exports = schema;
