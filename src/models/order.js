@@ -16,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      total: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
       status: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -65,9 +61,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'addressId',
       as: 'addresses',
     });
-    Order.hasMany(models.orderItems, {
+    Order.hasMany(models.ordersItems, {
       foreignKey: 'orderId',
-      as: 'orders',
+      as: 'ordersItems',
     });
   };
 

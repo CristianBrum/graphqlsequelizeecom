@@ -41,7 +41,11 @@ const resolvers = {
       return order.getCustomers();
     },
     async address(order) {
-      return order.getAddresses();
+      const test = await order.getAddresses();
+      return test;
+    },
+    async orderItem(order) {
+      return order.getOrdersItems();
     },
   },
 };

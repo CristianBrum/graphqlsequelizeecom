@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, DataTypes) => {
   const OrderItem = sequelize.define(
-    'orderItems',
+    'ordersItems',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -10,25 +10,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         autoIncrement: true,
       },
-      productName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      firstPictureUrl: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      unitPrice: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
       quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
       },
       productId: {
         type: DataTypes.INTEGER,
@@ -50,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'orderItems',
+      tableName: 'ordersItems',
     },
   );
 

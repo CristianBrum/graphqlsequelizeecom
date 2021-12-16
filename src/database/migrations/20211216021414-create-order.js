@@ -33,10 +33,6 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      total: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       status: {
         allowNull: false,
         type: Sequelize.INTEGER,

@@ -1,17 +1,16 @@
 type Order {
   id: Int!
   installments: Int!
-  total: Int!
   status: Int!
   userId: Int!
   addressId: Int!
   customer: Customer!
   address: Address!
+  orderItem: [OrderItem!]!
 }
 
 input OrderInput {
   installments: Int!
-  total: Int!
   status: Int!
   userId: Int!
   addressId: Int!
