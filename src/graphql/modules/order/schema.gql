@@ -24,4 +24,6 @@ type Query {
 
 type Mutation {
   createOrder(data: OrderInput!): Order!
+  updateOrder(id: Int!, data: OrderInput!): Order!
+  deleteOrder(id: Int!): Boolean!
 }
