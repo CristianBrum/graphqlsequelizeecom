@@ -7,8 +7,7 @@ module.exports = {
       [
         {
           productName: 'caneca',
-          firstPictureUrl:
-            'https://img.elo7.com.br/product/original/36E9316/caneca-com-nome-bruna-chuva-de-coracoes.jpg',
+          firstPictureUrl: 'caneca.png',
           variationDescription: 'produto novo',
           productWeight: 300,
           unitPrice: 20.0,
@@ -18,8 +17,7 @@ module.exports = {
         },
         {
           productName: 'caderno',
-          firstPictureUrl:
-            'https://m.media-amazon.com/images/I/61ypxWlKLoL._AC_SY355_.jpg',
+          firstPictureUrl: 'caderno.jpg',
           variationDescription: 'produto novo',
           productWeight: 150,
           unitPrice: 45.5,
@@ -32,8 +30,8 @@ module.exports = {
           firstPictureUrl: 'lapis.com',
           variationDescription: 'produto novo',
           productWeight: 20,
-          unitPrice: 20.0,
-          stockQuantity: 10,
+          unitPrice: 0.5,
+          stockQuantity: 150,
           createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
           updatedAt: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
@@ -41,8 +39,8 @@ module.exports = {
           productName: 'caneta',
           firstPictureUrl: 'caneta.com',
           variationDescription: 'produto novo',
-          productWeight: 5,
-          unitPrice: 20.0,
+          productWeight: 15,
+          unitPrice: 3.5,
           stockQuantity: 20,
           createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
           updatedAt: Sequelize.literal('CURRENT_TIMESTAMP'),

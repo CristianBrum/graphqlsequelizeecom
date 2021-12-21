@@ -6,7 +6,7 @@ module.exports = {
       'ordersItems',
       [
         {
-          quantity: 1,
+          quantity: 10,
           productId: 2,
           orderId: 1,
           createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
