@@ -4,6 +4,7 @@ type OrderItem {
   productId: Int!
   orderId: Int!
   products: Product!
+  order: Order!
 }
 
 input OrderItemInput {

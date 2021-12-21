@@ -53,6 +53,9 @@ const resolvers = {
     async products(order) {
       return order.getProducts();
     },
+    async order(order) {
+      return order.getOrders();
+    },
   },
 };
 
