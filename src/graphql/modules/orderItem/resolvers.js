@@ -1,5 +1,6 @@
 const { UserInputError } = require('apollo-server');
-const { ordersItems, products } = require('../../../models');
+const { ordersItems, products, customers, orders } = require('../../../models');
+const { sendConfirmationEmail } = require('../../../utils/sendMail');
 const schema = require('./validation');
 
 const resolvers = {
@@ -22,16 +23,43 @@ const resolvers = {
           validationErrors: error.details,
         });
       }
+
       const { productId: id } = data;
-      const { stockQuantity } = await products.findByPk(id);
+      const product = await products.findByPk(id);
+      const { stockQuantity } = product;
       if (data.quantity <= stockQuantity) {
         await products.update(
           { stockQuantity: stockQuantity - data.quantity },
           { where: { id } },
         );
-        const test = await ordersItems.create(data);
-        return test;
+        const ord = await ordersItems.findAll();
+        const filterOrd = ord
+          .filter((item) => item.orderId === data.orderId)
+          .map((ids) => ids.productId);
+        if (filterOrd.includes(data.productId) === true) {
+          throw new Error('Este item já está no seu Carrinho.');
+        }
+
+        const productInCart = await products.findAll({
+          where: { id: filterOrd },
+        });
+
+        const productQuantity = await ordersItems.findAll({
+          where: { id: filterOrd },
+        });
+
+        const quanty = await productQuantity.map(({ quantity }) => quantity);
+
+        const items = await productInCart.map(({ productName }) => productName);
+
+        const order = await orders.findByPk(data.orderId);
+        const user = await customers.findByPk(order.userId);
+
+        const createOrderItem = await ordersItems.create(data);
+        sendConfirmationEmail(user, items, quanty, order);
+        return createOrderItem;
       }
+
       throw new UserInputError('Quantidade indisponivel');
     },
 

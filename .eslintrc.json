@@ -15,6 +15,12 @@
       "implicit-arrow-linebreak":"off",
       "arrow-body-style":"off",
       "newline-per-chained-call":"off",
-      "no-useless-escape":"off"
+      "no-useless-escape":"off",
+      "object-curly-newline":"off"
+    },
+    "globals": {
+      "describe": false,
+      "test": false,
+      "expect":false
     }
   }
