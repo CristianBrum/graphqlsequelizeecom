@@ -38,8 +38,13 @@ Esta é Uma Api de E-commerce. Ela foi escrito em Node js, utilizando GraphQL co
     * `npx sequelize db:migrate`
     * Para polular o banco de dados:(opcional)
     * `npx sequelize-cli db:seed:all`
+  
+  4. para acessar os emails enviados:
+   * crie uma conta em [**ethereal**](https://ethereal.email/create).
+   * copie o `user` e `password` do site.
+   * atualize as variáveis de ambiente `NODEMAILER_USER` e `NODEMAILER_PASSWORD`.
 
-4. Para Facilitar a manipulaçao das queries e mutation, recomendo importar o arquivo `postman_collection.json` no programa [**Postman**](https://www.postman.com/downloads/).
+5. Para Facilitar a manipulaçao das queries e mutation, recomendo importar o arquivo `postman_collection.json` no programa [**Postman**](https://www.postman.com/downloads/).
 
  * Clique em `import` na barra superior esquerda.
  *  selecione o arquivo dentro da pasta do projeto.
