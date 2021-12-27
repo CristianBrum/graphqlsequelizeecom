@@ -39,4 +39,5 @@ Esta é Uma Api de E-commerce. Ela foi escrito em Node js, utilizando GraphQL co
     * Para polular o banco de dados:(opcional)
     * `npx sequelize-cli db:seed:all`
 
-4. Para Facilitar a manipulação das Queries e Mutation, recomendo importar o arquivo `postman_collection.json` no programa [**Postman**](https://www.postman.com/downloads/).
+4. Para Facilitar a manipulaçao das queries e mutation, recomendo importar o arquivo `postman_collection.json` no programa [**Postman**](https://www.postman.com/downloads/).
+   <img src="./postmanQueries.png">
