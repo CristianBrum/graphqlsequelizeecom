@@ -1,0 +1,560 @@
+{
+	"info": {
+		"_postman_id": "bbe462fc-c844-4b25-aa52-f947b52dc87c",
+		"name": "GraphQLSequelizeEcom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "createCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateCustomer($data: CustomerInput!) {\n  createCustomer(data: $data) {\n    customer {\n      storeCustomerName\n      storeCustomerLastName\n      storeCustomerEmail\n      storeCustomerDocumentNumber\n      storeCustomerBirthDate\n      username\n      password\n    }\n  }\n}",
+								"variables": "{\n  \"data\": \n  {\n    \"storeCustomerName\": \"andre\",\n    \"storeCustomerLastName\": \"andre\",\n    \"storeCustomerEmail\": \"andre.tuflaios@gm8il.com\",\n    \"storeCustomerDocumentNumber\": \"878.959.777-31\",\n    \"storeCustomerBirthDate\": \"10/11/1997\",\n    \"username\": \"andre1234\",\n    \"password\": \"andre1234\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCustomer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiY3Jpc3RpYW4iLCJpYXQiOjE2Mzk1NjQ3MzYsImV4cCI6MTY0MjE1NjczNn0.1OdJA_4B0uFOLt2FXwpUKrVVOzRsVRFE5Ht5VNDlTd0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($updateCustomerId: Int!, $data: CustomerInput!) {\n  updateCustomer(id: $updateCustomerId, data: $data) {\n    storeCustomerName\n    storeCustomerLastName\n    storeCustomerEmail\n    storeCustomerDocumentNumber\n    storeCustomerBirthDate\n    username\n    password\n  }\n}",
+								"variables": "{\n  \"updateCustomerId\": 1,\n  \"data\": {\n    \"storeCustomerName\": \"cristian\",\n    \"storeCustomerLastName\": \"cristian\",\n    \"storeCustomerEmail\": \"cristian.update@gm8il.com\",\n    \"storeCustomerDocumentNumber\": \"855.554.557-31\",\n    \"storeCustomerBirthDate\": \"05/11/1977\",\n    \"username\": \"cristian1234\",\n    \"password\": \"cristian1234\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findCustomer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiY3Jpc3RpYW4iLCJpYXQiOjE2Mzk1NjQ3MzYsImV4cCI6MTY0MjE1NjczNn0.1OdJA_4B0uFOLt2FXwpUKrVVOzRsVRFE5Ht5VNDlTd0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Customer($customerId: Int!) {\n  customer(id: $customerId) {\n    storeCustomerName\n  }\n}",
+								"variables": "{\n  \"customerId\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "createAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateAddress($data: AddressInput!) {\n  createAddress(data: $data) {\n    id\n    storeCustomerStreet\n    storeCustomerNeighborhood\n    storeCustomerCity\n    storeCustomerState\n    storeCustomerCountry\n    storeCustomerPostalCode\n    storeCustomerNumber\n  }\n}",
+								"variables": "{\n  \"data\": \n  {\n    \"userId\": 2,\n    \"storeCustomerStreet\": \"av. queeeee\",\n    \"storeCustomerNeighborhood\": \"pedro \",\n    \"storeCustomerCity\": \"diaana errou queeeee?\",\n    \"storeCustomerState\": \"PG\",\n    \"storeCustomerCountry\": \"italia\",\n    \"storeCustomerPostalCode\": \"93881-370\",\n    \"storeCustomerNumber\": 3014\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($updateAddressId: Int!, $data: AddressInput!) {\n  updateAddress(id: $updateAddressId, data: $data) {\n    storeCustomerStreet\n    storeCustomerNeighborhood\n    storeCustomerCity\n    storeCustomerState\n    storeCustomerCountry\n    storeCustomerPostalCode\n    storeCustomerNumber\n  }\n}",
+								"variables": "{\n  \"updateAddressId\": 1,\n  \"data\": \n  {\n    \"userId\": 2,\n    \"storeCustomerStreet\": \"atualizanndo\",\n    \"storeCustomerNeighborhood\": \"atualizanndo \",\n    \"storeCustomerCity\": \"pqerrou atualizanndo array?\",\n    \"storeCustomerState\": \"PG\",\n    \"storeCustomerCountry\": \"italia\",\n    \"storeCustomerPostalCode\": \"93881-370\",\n    \"storeCustomerNumber\": 3014\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($deleteAddressId: Int!) {\n  deleteAddress(id: $deleteAddressId)\n}",
+								"variables": "{\n  \"deleteAddressId\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "createProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateProduct($data: ProductInput!) {\n  createProduct(data: $data) {\n    productName\n    firstPictureUrl\n    variationDescription\n    productWeight\n    unitPrice\n    stockQuantity\n  }\n}",
+								"variables": "{\n  \"data\": \n  {\n    \"productName\": \"pao\",\n    \"firstPictureUrl\": \"pao.com.png\",\n    \"variationDescription\": \"pao\",\n    \"productWeight\": 150.342,\n    \"unitPrice\": 75.30,\n    \"stockQuantity\": 100\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateprod",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($updateProductId: Int!, $data: ProductInput!) {\n  updateProduct(id: $updateProductId, data: $data) {\n    productName\n    firstPictureUrl\n    variationDescription\n    productWeight\n    unitPrice\n    stockQuantity\n  }\n}",
+								"variables": "{\n  \"updateProductId\": 3,\n  \"data\": {\n           \"productName\": \"lapis\",\n        \"firstPictureUrl\": \"lapis.png\",\n        \"variationDescription\": \"produto novo\",\n        \"unitPrice\": 20,\n        \"productWeight\": 0.5,\n        \"stockQuantity\": 1000\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteProduct($deleteProductId: Int!) {\n  deleteProduct(id: $deleteProductId)\n}",
+								"variables": "{\n  \"deleteProductId\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "createOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($data: OrderInput!) {\n  createOrder(data: $data) {\n    status\n    userId\n    addressId\n    installments\n  }\n}",
+								"variables": "{\n  \"data\": {\n    \"status\": 0,\n    \"userId\": 5,\n    \"addressId\": 1,\n    \"installments\": 6\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($updateOrderId: Int!, $data: OrderInput!) {\n  updateOrder(id: $updateOrderId, data: $data) {\n    installments\n    status\n    userId\n    addressId\n  }\n}",
+								"variables": "{\n  \"updateOrderId\": 1,\n  \"data\": {\n    \"status\": 0,\n    \"userId\": 5,\n    \"addressId\": 1,\n    \"installments\": 6\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($deleteOrderId: Int!) {\n  deleteOrder(id: $deleteOrderId)\n}",
+								"variables": "{\n  \"deleteOrderId\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orderItems",
+			"item": [
+				{
+					"name": "createOrderItem",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($data: OrderItemInput!) {\n  createOrderItem(data: $data) {\n    quantity\n    productId\n    orderId\n  }\n}",
+								"variables": "{\n  \"data\": {\n    \"quantity\": 5,\n    \"productId\": 5,\n    \"orderId\": 10\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrderItem",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateOrderItem($updateOrderItemId: Int!, $data: OrderItemInput!) {\n  updateOrderItem(id: $updateOrderItemId, data: $data) {\n    quantity\n    productId\n    orderId\n  }\n}",
+								"variables": "{\n  \"updateOrderItemId\": 1,\n  \"data\": {\n    \"quantity\": 5,\n    \"productId\": 5,\n    \"orderId\": 10\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOrderItem",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Mutation($deleteOrderItemId: Int!) {\n  deleteOrderItem(id: $deleteOrderItemId)\n}",
+								"variables": "{\n  \"deleteOrderItemId\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($username: String!, $password: String!) {\n  login(username: $username, password: $password) {\n    token\n  }\n}",
+						"variables": "{\n  \"username\": \"andre1234\",\n  \"password\": \"andre1234\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allCustomerData",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjcmlzdGlhbiIsImlhdCI6MTYzOTU4MjU5MSwiZXhwIjoxNjQyMTc0NTkxfQ.nshTAMW1KUyb69JBhdokfpDwXvcGZAHMGzpSPj8q4jo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query Query($customerId: Int!) {\n  customer(id: $customerId) {\n    storeCustomerName\n    storeCustomerLastName\n    storeCustomerEmail\n    storeCustomerDocumentNumber\n    storeCustomerBirthDate\n    username\n    password\n    address {\n      storeCustomerStreet\n      storeCustomerNeighborhood\n      storeCustomerCity\n      storeCustomerState\n      storeCustomerCountry\n      storeCustomerPostalCode\n      storeCustomerNumber\n    }\n    order {\n      installments\n      status\n      userId\n      addressId\n      orderItem {\n        quantity\n        products {\n          productName\n        }\n      }\n    }\n  }\n}",
+						"variables": "{\n  \"customerId\": 1\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"\n"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
