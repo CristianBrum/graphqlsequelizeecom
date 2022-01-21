@@ -27,24 +27,22 @@ Esta é Uma Api de E-commerce. Ela foi escrito em Node js, utilizando GraphQL co
 
 2. Instale as dependências e inicialize o projeto
   * Instale as dependências:
-    * `npm install`
-  * Inicialize o projeto:
     * `npm run dev`
+  * Inicialize o projeto:
+    * `npm start`
 
-3. comandos do Sequelize
-  * Para criar o Banco de dados:
-    * `npx sequelize db:create`
-  * Para subir as tabelas no banco de dados:
-    * `npx sequelize db:migrate`
-    * Para polular o banco de dados:(opcional)
-    * `npx sequelize-cli db:seed:all`
+3. Para rodar um container docker
+  * Tenha docker e docker-compose instalado na sua maquina:
+    * `docker-compose up `
+
+
   
-  4. para acessar os emails enviados:
+  1. para acessar os emails enviados:
    * crie uma conta em [**ethereal**](https://ethereal.email/create).
    * copie o `user` e `password` do site.
    * atualize as variáveis de ambiente `NODEMAILER_USER` e `NODEMAILER_PASSWORD`.
 
-5. Para Facilitar a manipulaçao das queries e mutation, recomendo importar o arquivo `postman_collection.json` no programa [**Postman**](https://www.postman.com/downloads/).
+4. Para Facilitar a manipulaçao das queries e mutation, recomendo importar o arquivo `postman_collection.json` no programa [**Postman**](https://www.postman.com/downloads/).
 
  * Clique em `import` na barra superior esquerda.
  *  selecione o arquivo dentro da pasta do projeto.

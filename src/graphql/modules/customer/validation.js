@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi').extend(require('@joi/date'));
+const Joi = require('joi').extend(require('@joi/date'));
 
 const schema = Joi.object({
   storeCustomerName: Joi.string().alphanum().min(3).max(30).required(),

@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 
 const schema = Joi.object({
   installments: Joi.number().positive().max(12).required(),
