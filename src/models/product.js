@@ -1,53 +1,15 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define(
-    'products',
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      productName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      firstPictureUrl: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      variationDescription: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      productWeight: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-      unitPrice: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-      stockQuantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: new Date(),
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: new Date(),
-      },
-    },
-    {
-      tableName: 'products',
-    },
-  );
+  const Product = sequelize.define('products', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    productName: DataTypes.STRING,
+    firstPictureUrl: DataTypes.STRING,
+    variationDescription: DataTypes.TEXT,
+    productWeight: DataTypes.DECIMAL(4, 2),
+    unitPrice: DataTypes.DECIMAL(4, 2),
+    stockQuantity: DataTypes.INTEGER,
+  }, { timestamps: false, tableName: 'products' });
 
   return Product;
 };

@@ -15,7 +15,6 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'customers',
           key: 'id',
@@ -25,7 +24,6 @@ module.exports = {
       },
       addressId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'addresses',
           key: 'id',
@@ -36,14 +34,6 @@ module.exports = {
       status: {
         allowNull: false,
         type: Sequelize.INTEGER,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
       },
     });
   },

@@ -10,31 +10,24 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       productName: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       firstPictureUrl: {
         type: Sequelize.STRING,
-        unique: true,
       },
       variationDescription: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       productWeight: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(4, 2),
       },
       unitPrice: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(4, 2),
       },
       stockQuantity: {
         type: Sequelize.INTEGER,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
       },
     });
   },
