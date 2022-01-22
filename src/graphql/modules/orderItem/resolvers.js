@@ -5,18 +5,15 @@ const schema = require('./validation');
 
 const resolvers = {
   Query: {
-    orderItem: (_, { id }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    orderItem: (_, { id }) => {
       return ordersItems.findByPk(id);
     },
-    allOrdersItems: (_, args, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    allOrdersItems: (_, args) => {
       return ordersItems.findAll();
     },
   },
   Mutation: {
-    async createOrderItem(_, { data }, { auth }) {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    async createOrderItem(_, { data }) {
       const { _value, error } = schema.validate(data, { abortEarly: false });
       if (error) {
         throw new UserInputError('Preencha todos os campos corretamente', {
@@ -63,15 +60,13 @@ const resolvers = {
       throw new UserInputError('Quantidade indisponivel');
     },
 
-    updateOrderItem: async (_, { id, data }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    updateOrderItem: async (_, { id, data }) => {
       const findId = await ordersItems.findByPk(id);
       const updateOrderItem = await findId.update(data, { where: { id } });
       return updateOrderItem;
     },
 
-    deleteOrderItem: async (_, { id }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    deleteOrderItem: async (_, { id }) => {
       const updateOrderItem = await ordersItems.destroy({ where: { id } });
       return updateOrderItem;
     },

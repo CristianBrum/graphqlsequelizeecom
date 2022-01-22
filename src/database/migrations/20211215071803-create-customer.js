@@ -10,12 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       storeCustomerName: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       storeCustomerLastName: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       storeCustomerEmail: {
+        allowNull: false,
         type: Sequelize.STRING,
         unique: true,
       },
@@ -28,20 +31,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      username: {
-        type: Sequelize.STRING,
-        unique: true,
-      },
       password: {
+        allowNull: false,
         type: Sequelize.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
       },
     });
   },

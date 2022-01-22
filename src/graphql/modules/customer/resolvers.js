@@ -9,12 +9,10 @@ const {
 
 const resolvers = {
   Query: {
-    customer: (_, { id }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    customer: (_, { id }) => {
       return customers.findByPk(id);
     },
-    allCustomer: (_, args, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    allCustomer: (_, args) => {
       return customers.findAll();
     },
   },
@@ -33,24 +31,22 @@ const resolvers = {
         storeCustomerEmail: data.storeCustomerEmail,
         storeCustomerDocumentNumber: data.storeCustomerDocumentNumber,
         storeCustomerBirthDate: data.storeCustomerBirthDate,
-        username: data.username,
         password: await encryptPassword(data.password),
       });
       const token = createToken({
         id: customer.id,
-        username: customer.username,
+        storeCustomerEmail: customer.storeCustomerEmail,
       });
       return { token, customer };
     },
-    updateCustomer: async (_, { id, data }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    updateCustomer: async (_, { id, data }) => {
       const findId = await customers.findByPk(id);
       const updateCustomer = await findId.update(data, { where: { id } });
       return updateCustomer;
     },
-    login: async (_, { username, password }) => {
+    login: async (_, { storeCustomerEmail, password }) => {
       try {
-        const customer = await customers.findOne({ where: { username } });
+        const customer = await customers.findOne({ where: { storeCustomerEmail } });
         if (!customer) {
           throw new Error('Usuário ou senha incorretos');
         }
@@ -64,7 +60,7 @@ const resolvers = {
 
         const token = createToken({
           id: customer.id,
-          username: customer.username,
+          storeCustomerEmail: customer.storeCustomerEmail,
         });
 
         return { token, customer };

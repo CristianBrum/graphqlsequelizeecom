@@ -4,18 +4,15 @@ const schema = require('./validation');
 
 const resolvers = {
   Query: {
-    order: (_, { id }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    order: (_, { id }) => {
       return orders.findByPk(id);
     },
-    allOrders: (_, args, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    allOrders: (_, args) => {
       return orders.findAll();
     },
   },
   Mutation: {
-    async createOrder(_, { data }, { auth }) {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    async createOrder(_, { data }) {
       const { _value, error } = schema.validate(data, { abortEarly: false });
       if (error) {
         throw new UserInputError('Preencha todos os campos corretamente', {
@@ -24,14 +21,12 @@ const resolvers = {
       }
       return orders.create(data);
     },
-    updateOrder: async (_, { id, data }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    updateOrder: async (_, { id, data }) => {
       const findId = await orders.findByPk(id);
       const updateOrder = await findId.update(data, { where: { id } });
       return updateOrder;
     },
-    deleteOrder: async (_, { id }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    deleteOrder: async (_, { id }) => {
       const deleteOrder = await orders.destroy({ where: { id } });
       return deleteOrder;
     },

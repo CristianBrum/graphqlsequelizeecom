@@ -8,7 +8,6 @@ const schema = Joi.object({
     .regex(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)
     .required(),
   storeCustomerBirthDate: Joi.date().format('DD/MM/YYYY').utc().required(),
-  username: Joi.string().alphanum().min(3).max(12).required(),
   password: Joi.string().alphanum().min(6).max(15).required(),
 });
 

@@ -3,54 +3,20 @@
 const { ORDER_STATUS } = require('../utils/orderStatus');
 
 module.exports = (sequelize, DataTypes) => {
-  const Order = sequelize.define(
-    'orders',
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true,
-      },
-      installments: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      status: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        values: [
-          ORDER_STATUS.processed.ordinal,
-          ORDER_STATUS.delivered.ordinal,
-          ORDER_STATUS.shipped.ordinal,
-        ],
-      },
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      addressId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'addresses',
-          key: 'id',
-        },
-        createdAt: {
-          type: DataTypes.DATE,
-          allowNull: false,
-          defaultValue: new Date(),
-        },
-        updatedAt: {
-          type: DataTypes.DATE,
-          allowNull: false,
-          defaultValue: new Date(),
-        },
-      },
+  const Order = sequelize.define('orders', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    installments: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
+    addressId: DataTypes.INTEGER,
+    status: {
+      type: DataTypes.INTEGER,
+      values: [
+        ORDER_STATUS.processed.ordinal,
+        ORDER_STATUS.delivered.ordinal,
+        ORDER_STATUS.shipped.ordinal,
+      ],
     },
-    {
-      tableName: 'orders',
-    },
-  );
+  }, { timestamps: false, tableName: 'orders' });
 
   Order.associate = (models) => {
     Order.belongsTo(models.customers, {

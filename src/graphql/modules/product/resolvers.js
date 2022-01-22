@@ -4,18 +4,15 @@ const schema = require('./validation');
 
 const resolvers = {
   Query: {
-    product: (_, { id }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    product: (_, { id }) => {
       return products.findByPk(id);
     },
-    allProduct: (_, args, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    allProduct: (_, args) => {
       return products.findAll();
     },
   },
   Mutation: {
-    async createProduct(_, { data }, { auth }) {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    async createProduct(_, { data }) {
       const { _value, error } = schema.validate(data, { abortEarly: false });
       if (error) {
         throw new UserInputError('Preencha todos os campos corretamente', {
@@ -24,14 +21,12 @@ const resolvers = {
       }
       return products.create(data);
     },
-    updateProduct: async (_, { id, data }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    updateProduct: async (_, { id, data }) => {
       const findId = await products.findByPk(id);
       const updateProduct = await findId.update(data, { where: { id } });
       return updateProduct;
     },
-    deleteProduct: async (_, { id }, { auth }) => {
-      if (!auth) throw new Error('Você não tem autorização para essa ação!');
+    deleteProduct: async (_, { id }) => {
       const deleteProduct = await products.destroy({ where: { id } });
       return deleteProduct;
     },
